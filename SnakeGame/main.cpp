@@ -1,25 +1,17 @@
 #include "pch.h"
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "First Window");
+	//sf::RenderWindow window(sf::VideoMode(800, 600), "First Window");
+	Game game;
 
-	while (window.isOpen())
+	while (!game.GetWindow()->IsDone())
 	{
-		sf::Event event;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
-
-		window.clear();
-		//window.draw();
-		window.display();
+		game.HandleInput();
+		game.Update();
+		game.Render();
 	}
 
 	return 0;
